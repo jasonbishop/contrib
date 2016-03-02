@@ -29,7 +29,7 @@
   args:
     creates: "{{ kube_cert_dir }}/server.crt"
   environment:
-    MASTER_IP: "{{ kube_cert_ip }}"
+    MASTER_IP: "_use_aws_external_ip_"
     MASTER_NAME: "{{ inventory_hostname }}"
     DNS_DOMAIN: "{{ dns_domain }}"
     SERVICE_CLUSTER_IP_RANGE: "{{ kube_service_addresses }}"

@@ -5,3 +5,10 @@
     state: latest
   notify:
     - restart daemons
+
+- name: Generic | Install cloud-utils
+  action: "{{ ansible_pkg_mgr }}"
+  args:
+    name: cloud-utils
+    state: latest
+  when: not is_atomic

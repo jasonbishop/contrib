@@ -13,6 +13,9 @@
     url=https://raw.githubusercontent.com/GoogleCloudPlatform/kubernetes/master/cluster/addons/dns/skydns-rc.yaml.in
     dest="{{ local_temp_addon_dir }}/dns/skydns-rc.yaml.j2"
     force=yes
+  environment:
+    http_proxy: "{{ http_proxy|default('') }}"
+    https_proxy: "{{ https_proxy|default('') }}"
   sudo: no
 
 - name: DNS | Convert pillar vars to ansible vars for skydns-rc.yaml
@@ -36,6 +39,9 @@
     url=https://raw.githubusercontent.com/GoogleCloudPlatform/kubernetes/master/cluster/addons/dns/skydns-svc.yaml.in
     dest="{{ local_temp_addon_dir }}/dns/skydns-svc.yaml.j2"
     force=yes
+  environment:
+    http_proxy: "{{ http_proxy|default('') }}"
+    https_proxy: "{{ https_proxy|default('') }}"
   sudo: no
 
 - name: DNS | Convert pillar vars to ansible vars for skydns-rc.yaml
