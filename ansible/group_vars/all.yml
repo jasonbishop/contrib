@@ -31,7 +31,7 @@ insecure_registrys:
 #http_proxy: "http://proxy.example.com:3128"
 #https_proxy: "http://proxy.example.com:3128"
 http_proxy: "http://10.1.52.100:8080"
-https_proxy: "https://10.1.52.100:8080"
+https_proxy: "http://10.1.52.100:8080"
 
 # Kubernetes internal network for services.
 # Kubernetes services will get fake IP addresses from this range.
