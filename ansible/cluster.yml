@@ -2,6 +2,11 @@
 # This playbook deploys a kubernetes cluster 
 # with the default addons.
 
+- hosts: registry
+  sudo: yes
+  roles:
+    - ansible-docker-registry
+
 - hosts: all
   gather_facts: false
   sudo: yes
