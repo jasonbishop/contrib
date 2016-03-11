@@ -37,7 +37,7 @@ https_proxy: "http://10.1.52.100:8080"
 # Kubernetes services will get fake IP addresses from this range.
 # This range must not conflict with anything in your infrastructure. These
 # addresses do not need to be routable and must just be an unused block of space.
-kube_service_addresses: 10.254.0.0/16
+kube_service_addresses: 10.0.0.0/16
 
 # Network implementation (flannel|opencontrail)
 networking: flannel
