@@ -8,27 +8,27 @@
     state=directory
   sudo: no
 
-- name: DNS | Download skydns-rc.yaml file from Kubernetes repo
-  local_action: get_url
-    url=https://raw.githubusercontent.com/GoogleCloudPlatform/kubernetes/master/cluster/addons/dns/skydns-rc.yaml.in
-    dest="{{ local_temp_addon_dir }}/dns/skydns-rc.yaml.j2"
-    force=yes
-  environment:
-    http_proxy: "{{ http_proxy|default('') }}"
-    https_proxy: "{{ https_proxy|default('') }}"
-  sudo: no
+#- name: DNS | Download skydns-rc.yaml file from Kubernetes repo
+#  local_action: get_url
+#    url=https://raw.githubusercontent.com/GoogleCloudPlatform/kubernetes/master/cluster/addons/dns/skydns-rc.yaml.in
+#    dest="{{ local_temp_addon_dir }}/dns/skydns-rc.yaml.j2"
+#    force=yes
+#  environment:
+#    http_proxy: "{{ http_proxy|default('') }}"
+#    https_proxy: "{{ https_proxy|default('') }}"
+#  sudo: no
 
-- name: DNS | Convert pillar vars to ansible vars for skydns-rc.yaml
-  local_action: replace
-    dest="{{ local_temp_addon_dir }}/dns/skydns-rc.yaml.j2"
-    regexp="pillar\[\'(\w*)\'\]"
-    replace="\1"
-  sudo: no
+#- name: DNS | Convert pillar vars to ansible vars for skydns-rc.yaml
+#  local_action: replace
+#    dest="{{ local_temp_addon_dir }}/dns/skydns-rc.yaml.j2"
+#    regexp="pillar\[\'(\w*)\'\]"
+#    replace="\1"
+#  sudo: no
 
 - name: DNS | Install Template from converted saltfile
   template:
   args:
-    src: "{{ local_temp_addon_dir }}/dns/skydns-rc.yaml.j2"
+    src: skydns-rc.yaml.j2
     dest: "{{ kube_addons_dir }}/dns/skydns-rc.yaml"
     mode: 0755
     owner: root
