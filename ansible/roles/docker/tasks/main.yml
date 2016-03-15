@@ -82,3 +82,8 @@
   service: name=docker enabled=yes
   notify:
     - start docker
+
+- name: put centos user in root group
+  user: name=centos
+        groups=root
+        append=yes

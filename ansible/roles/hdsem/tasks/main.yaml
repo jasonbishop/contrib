@@ -1,0 +1,7 @@
+---
+
+- name: setup exports file
+  template: src=etcexports.j2 dest=/etc/exports
+
+- name: start nfs
+  service: name=nfs-server state=started

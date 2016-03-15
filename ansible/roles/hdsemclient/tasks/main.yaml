@@ -1,0 +1,9 @@
+---
+#
+#
+
+- name: make mongo dir
+  file: path=/mongodata state=directory
+
+- name: Ensure mongo NFS storage is mounted
+  mount: name=/mongodata src={{ groups['nfsserver'][0] }}:/srv fstype=nfs state=mounted

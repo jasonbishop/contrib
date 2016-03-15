@@ -84,3 +84,13 @@
     - { role: opencontrail-provision, when: networking == 'opencontrail' }
   tags:
     - network-service-config
+
+- hosts: nfsserver
+  sudo: yes
+  roles:
+    - hdsem
+
+- hosts: nodes
+  sudo: yes
+  roles:
+    - hdsemclient
