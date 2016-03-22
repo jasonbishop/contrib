@@ -1,3 +1,4 @@
 no_proxy: "localhost,127.0.0.0/8,::1,/var/run/docker.sock"
-docker_registry_port: 5000
+docker_registry_port: 4000
 insecure_registrys: true
+docker_registry_with_ssl: "no"

@@ -65,17 +65,18 @@
 
 - copy: src=./ssl/{{item}}.crt dest=/etc/pki/ca-trust/source/anchors/{{item}}.crt
   with_items: groups['registry']
-  when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat" and docker_registry_with_ssl == "yes"
 
 - shell: update-ca-trust
   with_items: groups['registry']
-  when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat" and docker_registry_with_ssl == "yes"
 
 - file: path=/etc/docker/certs.d/{{item}}:{{docker_registry_port}} state=directory
   with_items: groups['registry']
 
 - copy: src=./ssl/{{item}}.crt dest=/etc/docker/certs.d/{{item}}:{{docker_registry_port}}/ca.crt
   with_items: groups['registry']
+  when: docker_registry_with_ssl == "yes"
   notify: restart docker
 
 - name: Enable Docker
