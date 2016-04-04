@@ -1,0 +1,43 @@
+# Install prerequisites
+- name: make sure docker-python RPM is not installed for RedHat
+  yum:
+    name: docker-python
+    state: absent
+  when: ansible_os_family == "RedHat"
+
+- name: Install easy_install, python-dev package for Debian
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+  sudo: yes
+  with_items:
+    - python-dev
+    - python-setuptools #easy_install
+  when: ansible_os_family == "Debian"
+
+- include: pip.yml
+
+- name: Get Hostname of etcd
+  delegate_to: "{{groups['etcd'][0]}}"
+  raw: echo {{ ansible_hostname }}
+  register: etcd_hostname
+- debug: var=etcd_hostname.stdout_lines[0]
+  
+
+
+- name: ensure Docker nginx is running
+  docker:
+    image: quay.io/timeline_labs/vulcand:latest
+    name: vulcand
+    ports:
+     - "80:80"
+     - "8182:8182"
+    expose:
+     - 80
+     - 8182 
+    command: /vulcand -apiInterface=0.0.0.0 -apiPort=8182 -etcd=http://{{ groups['etcd'][0] }}:2379 -interface=0.0.0.0 -port=80
+    state: reloaded
+    restart_policy: always
+    privileged: yes
