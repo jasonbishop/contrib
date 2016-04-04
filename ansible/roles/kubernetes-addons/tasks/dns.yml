@@ -43,6 +43,7 @@
     http_proxy: "{{ http_proxy|default('') }}"
     https_proxy: "{{ https_proxy|default('') }}"
   sudo: no
+  changed_when: false
 
 - name: DNS | Convert pillar vars to ansible vars for skydns-rc.yaml
   local_action: replace
@@ -50,6 +51,7 @@
     regexp="pillar\[\'(\w*)\'\]"
     replace="\1"
   sudo: no
+  changed_when: false
 
 - name: DNS | Install Template from converted saltfile
   template:

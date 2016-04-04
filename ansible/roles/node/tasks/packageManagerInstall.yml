@@ -1,5 +1,5 @@
 ---
-- name: set default
+- name: Init the did_install fact
   set_fact:
     did_install: false
 

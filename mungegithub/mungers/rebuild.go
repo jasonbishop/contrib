@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"regexp"
 
+	"k8s.io/contrib/mungegithub/features"
 	"k8s.io/contrib/mungegithub/github"
 
 	"github.com/golang/glog"
@@ -50,8 +51,11 @@ func init() {
 // Name is the name usable in --pr-mungers
 func (r *RebuildMunger) Name() string { return "rebuild-request" }
 
+// RequiredFeatures is a slice of 'features' that must be provided
+func (r *RebuildMunger) RequiredFeatures() []string { return []string{} }
+
 // Initialize will initialize the munger
-func (r *RebuildMunger) Initialize(config *github.Config) error {
+func (r *RebuildMunger) Initialize(config *github.Config, features *features.Features) error {
 	r.robots = sets.NewString("googlebot", "k8s-bot", "k8s-merge-robot")
 	return nil
 }
@@ -68,7 +72,7 @@ func (r *RebuildMunger) Munge(obj *github.MungeObject) {
 		return
 	}
 
-	comments, err := obj.ListComments(*obj.Issue.Number)
+	comments, err := obj.ListComments()
 	if err != nil {
 		glog.Errorf("unexpected error getting comments: %v", err)
 	}
