@@ -38,7 +38,7 @@
   when: kube-dash
 
 - name: Get kube-addons script from Kubernetes
-  template: src=kube-addons.j2 dest={{ kube_script_dir }}/kube-addons.sh
+  template: src=kube-addons.sh.j2 dest={{ kube_script_dir }}/kube-addons.sh
   notify:
     - restart kube-addons
 
