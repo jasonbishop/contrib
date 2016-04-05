@@ -1,7 +1,7 @@
 - name: Generic | Install kubernetes node
   action: "{{ ansible_pkg_mgr }}"
   args:
-    name: kubernetes-node
-    state: latest
+    name: kubernetes-node-1.2.0-0.6.alpha1.git8632732.el7
+    state: present
   notify:
     - restart daemons
