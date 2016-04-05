@@ -38,18 +38,12 @@
   when: kube-dash
 
 - name: Get kube-addons script from Kubernetes
-  get_url:
-    url=https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/saltbase/salt/kube-addons/kube-addons.sh
-    dest={{ kube_script_dir }}/kube-addons.sh mode=0755
-    force=yes
+  template: src=kube-addons.j2 dest={{ kube_script_dir }}/kube-addons.sh
   notify:
     - restart kube-addons
 
 - name: Get kube-addon-update script from Kubernetes
-  get_url:
-    url=https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/saltbase/salt/kube-addons/kube-addon-update.sh
-    dest={{ kube_script_dir }}/kube-addon-update.sh mode=0755
-    force=yes
+  template: src=kube-addons-update.sh.j2 dest={{ kube_script_dir }}/kube-addon-update.sh
   notify:
     - restart kube-addons
 
