@@ -94,3 +94,12 @@
   sudo: yes
   roles:
     - hdsemclient
+
+- hosts:
+    - masters[0]
+  sudo: yes
+  roles:
+    - vulcand
+  tags:
+    - vulcand
+

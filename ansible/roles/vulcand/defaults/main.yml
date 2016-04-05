@@ -1,0 +1,10 @@
+pip_version_pip: latest
+pip_version_setuptools: latest
+pip_version_six: 1.4
+pip_version_docker_py: 1.1.0
+
+pip_extra_args: ""
+
+proxy_env:
+  http_proxy: http://10.1.52.100:8080
+  https_proxy: https://10.1.52.100:8080
