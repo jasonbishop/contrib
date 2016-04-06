@@ -38,12 +38,12 @@
   when: kube-dash
 
 - name: Get kube-addons script from Kubernetes
-  template: src=kube-addons.sh.j2 dest={{ kube_script_dir }}/kube-addons.sh
+  template: src=kube-addons.sh.j2 dest={{ kube_script_dir }}/kube-addons.sh mode=0755
   notify:
     - restart kube-addons
 
 - name: Get kube-addon-update script from Kubernetes
-  template: src=kube-addons-update.sh.j2 dest={{ kube_script_dir }}/kube-addon-update.sh
+  template: src=kube-addons-update.sh.j2 dest={{ kube_script_dir }}/kube-addon-update.sh mode=0755
   notify:
     - restart kube-addons
 
