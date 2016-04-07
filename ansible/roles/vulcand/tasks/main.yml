@@ -25,7 +25,8 @@
   register: etcd_hostname
 - debug: var=etcd_hostname.stdout_lines[0]
   
-
+- name: Pull backend image
+  command: "/usr/bin/docker pull quay.io/timeline_labs/vulcand:latest"
 
 - name: ensure Docker nginx is running
   docker:
