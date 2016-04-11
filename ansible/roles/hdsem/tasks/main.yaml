@@ -1,5 +1,8 @@
 ---
 
+- name: set perms on /srv directory
+  file: src=/srv mode=0777
+
 - name: setup exports file
   template: src=etcexports.j2 dest=/etc/exports
 
