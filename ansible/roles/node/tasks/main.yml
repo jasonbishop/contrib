@@ -73,9 +73,6 @@
   notify:
     - restart proxy
 
-- name: write the proxy file local to deploy host
-  local_action: template src=localproxycommand.j2 dest=./localproxycommand.runme.sh
-
 - name: Enable proxy
   service: name=kube-proxy enabled=yes state=started
   when: networking != "opencontrail"

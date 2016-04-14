@@ -73,6 +73,12 @@
 - name: write the kubecfg (auth) file for kubectl
   template: src=kubectl.kubeconfig.j2 dest={{ kube_config_dir }}/kubectl.kubeconfig
 
+- name: write the kubecfg (auth) file local to deploy host
+  local_action: template src=kubectl.kubeconfig.j2 dest=./kubectl.kubeconfig.frommmaster.yaml
+
+- name: write the proxy file local to deploy host
+  local_action: template src=kubectl.sourceme.j2 dest=./kubectl.sourceme.sh
+
 # Enable kubelet on master only when OpenContrail is in use; see
 # https://github.com/kubernetes/contrib/pull/183
 - name: write the config files for kubelet

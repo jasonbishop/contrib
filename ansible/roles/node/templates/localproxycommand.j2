@@ -1,1 +1,0 @@
-kubectl proxy --port=8080 --server=https://{{ groups['masters'][0] }}:{{ kube_master_api_port }} --certificate-authority=ca.crt --cluster={{ cluster_name }} --token={{ proxy_token }}
