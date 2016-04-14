@@ -74,7 +74,7 @@
   template: src=kubectl.kubeconfig.j2 dest={{ kube_config_dir }}/kubectl.kubeconfig
 
 - name: write the kubecfg (auth) file local to deploy host
-  local_action: template src=kubectl.kubeconfig.j2 dest=./kubectl.kubeconfig.frommmaster.yaml
+  local_action: template src=kubectl.kubeconfig.j2 dest=./kubectl.kubeconfig.frommmaster.yaml mode=0644
 
 - name: write the proxy file local to deploy host
   local_action: template src=kubectl.sourceme.j2 dest=./kubectl.sourceme.sh
